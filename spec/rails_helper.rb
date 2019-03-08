@@ -63,7 +63,7 @@ def stub_addresses
 
   ["1500 Remount Road, Front Royal, VA 22630",
    "123 Donation Site Way",
-   "Smithsonian Conservation Center new"].each do |address|
+   "Smithsonian Conservation Center new"].each do |address|q
     Geocoder::Lookup::Test.add_stub(
       address, [
         {
