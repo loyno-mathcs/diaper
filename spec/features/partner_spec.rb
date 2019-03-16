@@ -16,6 +16,9 @@ RSpec.feature "Partner management", type: :feature do
       expect(page.find(:xpath, "//table/tbody/tr[1]/td[1]")).to have_content(@first.name)
       expect(page.find(:xpath, "//table/tbody/tr[3]/td[1]")).to have_content(@third.name)
     end
+    scenario "partner agency stats are visible" do
+      expect(page).to have_text("Partner agencies currently in network")
+    end
   end
 
   scenario "User can add a new partner" do

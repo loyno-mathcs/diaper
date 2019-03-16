@@ -37,3 +37,14 @@ tr.positive {
 tr.highlight {
   background-color: $diaper-color-blue-95;
 }
+
+.agency-stats {
+  line-height: 46px;
+  height: 46px;
+  p{
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+    font-weight: bold;
+  }
+}

@@ -1,5 +1,5 @@
 <section class="content-header">
-  <% content_for :title, "Partners - Agencies - #{current_organization.name}" %>
+  <% content_for :title, "Partners - Agencies -  #{current_organization.name}" %>
   <h1>
     Partner Agencies
     <small>for <%= current_organization.name %></small>
@@ -17,6 +17,13 @@
 <section class="content">
   <div class="box">
     <div class="box-header with-border bg-gray">
+      <section>
+        <div class="pull-left agency-stats" >
+          <p>
+            <%= current_organization.partners.size %> Partner agencies currently in network 
+          </p>
+        </div>      
+      </section>
       <section id="filters">
         <div class="pull-right">
           <%= modal_button_to("#csvImportModal", { text: "Import Partners", icon: "upload", size: "lg" }) if @partners.empty? %>
