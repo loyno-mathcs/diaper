@@ -1,8 +1,8 @@
 class PartnerMailerJob
-  include SuckerPunch::Job
-  workers 2
+include Sidekiq::Worker
+ workers 2
 
   def perform(current_organization, distribution)
-    DistributionMailer.partner_mailer(current_organization, distribution).deliver_now
-  end
+      DistributionMailer.partner_mailer(current_organization, distribution).deliver_now if Rails.env.production?
+    end
 end

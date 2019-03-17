@@ -1,5 +1,5 @@
 class UpdateDiaperPartnerJob
-  include SuckerPunch::Job
+  include Sidekiq::Worker
   include DiaperPartnerClient
   workers 2
 
