@@ -145,12 +145,29 @@ RSpec.feature "Purchases", type: :feature, js: true do
 
       scenario "a user can add items that do not yet have a barcode" do
         # enter a new barcode
+        within "#purchase_line_items" do
+          expect(page).to have_xpath("//input[@id='_barcode-lookup-0']")
+          fill_in "_barcode-lookup-0", with: "123456\n"
+        end
         # form finds no barcode and responds by prompting user to choose an item and quantity
-        # fill that in
+        expect(page).to have_css("#newBarcode")
+        within "#new_barcode_item" do
+          expect(page).to have_xpath("//input[@id='barcode_item_value']")
+          expect(page).to have_xpath("//input[@id='barcode_item_quantity']")
+          expect(page).to have_xpath("//select[@id='barcode_item_barcodeable_id']")
+          # fill that in
+          fill_in "barcode_item_value", with: "123456"
+          fill_in "barcode_item_quantity", with: "10"
+          select Item.alphabetized.first.name, from: "barcode_item_barcodeable_id"
+        end
         # saves new barcode
+        within "#newBarcode" do
+          click_button "Save"
+        end
         # form updates
-        pending "TODO: adding items with a new barcode"
-        raise
+        expect(page).to have_xpath("//input[@id='_barcode-lookup-new_line_items']")
+        expect(BarcodeItem.last.value).to eq("123456")
+        expect(BarcodeItem.last.quantity).to eq(10)
       end
     end
   end
