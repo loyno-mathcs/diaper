@@ -3,7 +3,6 @@ class DonationSitesController < ApplicationController
 
   def index
     @donation_sites = current_organization.donation_sites.merge(DonationSite.alphabetized)
-    puts @donation_sites.inspect
     @donation_site = current_organization.donation_sites.new
   end
 

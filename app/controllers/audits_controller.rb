@@ -92,7 +92,7 @@ class AuditsController < ApplicationController
   end
 
   def set_items
-    @items = current_organization.items.alphabetized
+    @items = current_organization.items
   end
 
   def save_audit_status_and_redirect(params)

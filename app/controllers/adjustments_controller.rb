@@ -19,14 +19,14 @@ class AdjustmentsController < ApplicationController
     @adjustment = current_organization.adjustments.new
     @adjustment.line_items.build
     @storage_locations = current_organization.storage_locations
-    @items = current_organization.items.alphabetized
+    @items = current_organization.items
   end
 
   # POST /adjustments
   def create
     @adjustment = current_organization.adjustments.new(adjustment_params)
     @storage_locations = current_organization.storage_locations
-    @items = current_organization.items.alphabetized
+    @items = current_organization.items
 
     if @adjustment.valid?
       @adjustment.storage_location.adjust!(@adjustment)
